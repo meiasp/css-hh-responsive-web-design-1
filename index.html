@@ -1,11 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse by Job Categories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #183B56;
+      --orange: #FF8345;
+      --peach: #fcf1e9;
+      --gray-text: #5A7184;
+      --border: #e9edf1;
+      --hover-bg: #f6f8fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      color: var(--navy);
+      background: #fff;
+      padding: 40px 38px 60px;
+    }
+
+    .section {
+      max-width: 1480px;
+      margin: 0 auto;
+    }
+
+    /* ---------- หัวข้อ ---------- */
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 70px;
+    }
+
+    /* ขีดสีส้มใต้คำว่า Job */
+    .highlight {
+      background: linear-gradient(transparent 70%, #f4a97f 70%);
+      padding-right: 2px;
+    }
+
+    /* ---------- Grid ของการ์ด ---------- */
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    /* ---------- การ์ด ---------- */
+    .card {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 calc((100% - 90px) / 4);
+      justify-content: space-between;
+      min-height: 277px;
+      padding: 30px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: var(--peach);
+      color: var(--orange);
+      font-size: 40px;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .icon-circle svg {
+      width: 34px;
+      height: 34px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-footer p {
+      font-size: 16px;
+      color: var(--gray-text);
+    }
+
+    .arrow {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ---------- Hover: พื้นหลังเทา + วงกลมสีส้มทึบ ---------- */
+    .card:hover {
+      background: var(--hover-bg);
+    }
+
+    .card:hover .icon-circle {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(240, 138, 84, 0.35);
+    }
+
+    /* ---------- การ์ดสีส้ม (Explore more) ---------- */
+    .card-cta {
+      justify-content: center;
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-cta:hover {
+      background: #e97c42;
+    }
+
+    .card-cta .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 0 10px;
+    }
+
+    .card-cta h3 {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .card-cta .arrow {
+      stroke: #fff;
+    }
+
+    /* ลายเส้นคลื่นจาง ๆ ด้านหลัง */
+    .card-cta .wave {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.35);
+      stroke-width: 1;
+      pointer-events: none;
+    }
+
+    @media only screen and (min-width:375px) and (max-width:580px){
+    .section-title{
+        font-size: 30px;
+    }
+
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 30px;
+    }
+    }
+  </style>
 </head>
 <body>
-    
+
+  <section class="section">
+    <h2 class="section-title">
+      Browse by<br>
+      <span class="highlight">Job</span> Categories
+    </h2>
+
+    <div class="grid">
+
+      <!-- 1. Digital Marketing -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Digital Marketing</h3>
+          <div class="card-footer">
+            <p>143 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Art & Design -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Art &amp; Design</h3>
+          <div class="card-footer">
+            <p>110 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Accounting -->
+      <a href="#" class="card">
+        <div class="icon-circle">$</div>
+        <div>
+          <h3 class="card-title">Accounting</h3>
+          <div class="card-footer">
+            <p>158 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Photography -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Photography</h3>
+          <div class="card-footer">
+            <p>95 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. Copy Writing -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Copy Writing</h3>
+          <div class="card-footer">
+            <p>113 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. Music -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Music</h3>
+          <div class="card-footer">
+            <p>55 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. Human Resources -->
+      <a href="#" class="card">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <h3 class="card-title">Human Resources</h3>
+          <div class="card-footer">
+            <p>25 Jobs Opened</p>
+            <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. Explore more -->
+      <a href="#" class="card card-cta">
+        <svg class="wave" viewBox="0 0 344 277" preserveAspectRatio="none">
+          <path d="M60 0c20 40 90 30 130 45s90 30 154 10"/>
+          <path d="M80 0c30 30 80 20 120 40s80 25 144 5"/>
+          <path d="M0 250c50-20 100 0 140 27"/>
+          <path d="M0 230c60-10 120 10 170 47"/>
+        </svg>
+        <div class="cta-inner">
+          <h3>Explore<br>30 More<br>Categories</h3>
+          <svg class="arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
 </body>
 </html>
